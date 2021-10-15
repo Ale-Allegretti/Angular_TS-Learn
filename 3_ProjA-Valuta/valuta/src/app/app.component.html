@@ -1,0 +1,46 @@
+
+<div class="container my-5">
+  <h1>Cambio Valute</h1>
+  <hr>
+  <div class="row mt-5">
+    <div class="col">
+      <label for="form-select">Importo di partenza</label>
+      <input type="number" class="form-control mt-3" [(ngModel)]="importoInit" (keyup)="getCambioValuta()">
+    </div> 
+    <div class="col">
+      <label for="form-select">Valuta di partenza</label>
+      <select class="form-select mt-3" [(ngModel)]="valutaInit" (change)="getCambioValuta()"> 
+        <option value="EUR">Euro &euro;</option>
+        <option value="USD">Dollaro &dollar;</option>
+        <option value="GBP">Sterline &pound;</option>
+      </select>
+    </div>
+    <div class="col">
+      <label for="form-select">Cambio desiderato</label>
+      <select class="form-select mt-3" 
+            [(ngModel)]="valutaFin" (change)="getCambioValuta()">
+        <option value="EUR">Euro &euro;</option>
+        <option value="USD">Dollaro &dollar;</option>
+        <option value="GBP">Sterline &pound;</option>
+      </select>
+    </div>
+    <div class="col">
+      <label for="">Risultato cambio</label>
+      <br><br>
+      <label for="">{{ simbolo }} {{ importoFin }}</label>
+    </div>
+
+
+  </div>
+
+</div>
+
+<div class="container">
+  <app-generato [numero]="1482" 
+      stringa="Stringa passata da binding" 
+      [libro]="libro"
+      (evento)="ricevoDati($event)"
+      [numero]="numeroRicevuto"></app-generato>
+
+</div>
+

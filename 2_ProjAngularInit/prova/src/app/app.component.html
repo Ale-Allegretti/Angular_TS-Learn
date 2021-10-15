@@ -1,0 +1,67 @@
+
+<div class="container">
+  <h1>{{title}}</h1>
+
+  <h2>autore: {{ getNomeCognome() }} </h2>
+
+  <div class="alert alert-info">
+      <p>
+      Attenzione! Questo è un progetto in Angular, con bootstrap aggiunto.
+      </p>
+      <!-- <img src="{{ immagine }} " alt=""> -->
+  </div>
+
+  <input type="text" class="form-control" [value]="getNomeCognome()">
+  <br>
+  <button type="button" class="btn btn-primary" (click)="clickBottone()" [class.active]="isActive()">
+    {{ !attivo ? "Attiva" : "Disattiva"}}
+  </button>
+  <br>
+  <div class="row mt-4">
+   <img [src]="immagine" [hidden]="!mostrare">
+  </div>
+  <hr>
+
+
+  <!-- per stampare codice HTLM proveniente da terzi -->
+  <div [innerHTML]="articolo"  
+       [style.color]="'grey'" 
+       [style.background] = "background"
+       (mouseleave) = "cambiaColore('')"
+       (mouseenter) = "cambiaColore('green')"
+  ></div>
+
+  <hr>
+  <br>
+
+  <!-- two way binding, cambio il valore della variabile direttamente dalla pagina htlm -->
+  <input type="text" class="form-control" [(ngModel)]="testo" >
+  <p> {{testo}} </p>
+  <br>
+  <textarea name="" [(ngModel)]="testo" cols="50" rows="10"></textarea>
+
+  <select class="form-select" [(ngModel)]="colore">
+      <option value="black">Nero</option>
+      <option value="green">Verde</option>
+      <option value="red">Rosso</option>
+  </select>
+  <!-- questo permette di avere lo stesso risultato, su tutti gli elementi con lo stesso ngModel -->
+
+
+  <div [style.color]="colore">
+    Questo testo cambia colore!
+  </div>
+
+  <br>
+  <button type="button" class="btn btn-primary" (click)="cambiaTesto()">Cambia testo</button>
+  <br><br>
+
+  <label for="nome">Nome</label> 
+  <br>
+  <input type="text" class="form-control mb-2" id="nome" [(ngModel)]="utente.nome">
+  <label for="cognome">Cognome</label> 
+  <br>
+  <input type="text" class="form-control mb-2" id="cognome" [(ngModel)]="utente.cognome">
+  <br><br>
+
+</div>

@@ -1,0 +1,11 @@
+
+<div> {{ stringa }} </div> <br>
+<br>
+<!-- il ? sta per optional chaining il quale previene errori in caso di undefined -->
+<small> {{ libro?.author }}</small>
+<div> {{ libro?.title }} -- {{libro?.price}} </div>
+<br><br>
+<div> Numero ricevuto dal figlio al padre e ricevuto dal figlio premendo il bottone 
+    ---> {{ numero }}</div>
+<br>
+<button type="button" class="btn btn-primary" (click)="bottoneClick()">Manda evento dal bottone</button>

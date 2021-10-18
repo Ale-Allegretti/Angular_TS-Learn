@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Task list</h1>
+  <p class="text-muted">La mia lista di cose da fare</p>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <!-- LISTA -->
+      <ul class="nav nav-tabs mt-5"
+          id="myTab"
+          role="tablist">
+        <li class="nav-item"
+            role="presentation">
+          <button class="nav-link" (click)="selezionaTodo()" [ngClass]="selezionaTabTodo()"
+                  id="todo-tab"
+                  type="button">
+            <i class="bi bi-list"></i>
+            Da fare
+          </button>
+        </li>
+        <li class="nav-item"
+            role="presentation">
+          <button class="nav-link" (click)="selezionaDone()" [ngClass]="selezionaTabDone()"
+                  id="done-tab"
+                  type="button">
+            <i class="bi bi-check2"></i>
+            Completati
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" [ngSwitch]="cambio">
+        <app-lista [lista]="completati" *ngSwitchCase="false"></app-lista>
+        <app-lista [lista]="daCompletare" *ngSwitchCase="true"></app-lista>
+      </div>
+    </div>
+    <div class="col-4">
+      <!-- FORM -->
+      <app-form (aggiungi)="addTask($event)"></app-form>
+    </div>
+  </div>
+</div>

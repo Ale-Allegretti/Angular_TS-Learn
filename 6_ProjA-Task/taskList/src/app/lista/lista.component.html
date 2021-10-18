@@ -1,0 +1,34 @@
+
+<div class="list-group">
+    <ng-container *ngFor="let todo of lista; let indice = index">
+        <div class="list-group-item p-4">
+            <div class="float-end text-muted text-end">
+                <i class="bi bi-calendar-event me-1"></i> {{ todo.scadenza }}<br>
+                <span class="badge bg-warning"
+                      *ngIf="todo.urgente">Urgente</span>
+            </div>
+            <span class="h4">{{ todo.titolo }}</span>
+            <p class="mb-2 text-muted">{{ todo.descrizione }}</p>
+            <ul class="nav nav-pills" *ngIf="todo.completato == false">
+                    <li class="nav-item">
+                        <button class="nav-link ps-0 text-success"
+                                type="button" (click)="completaTask(indice)">Completa</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link text-dark"
+                                type="button">Modifica</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link text-danger"
+                                type="button">Elimina</button>
+                    </li>
+            </ul> 
+        </div>
+    </ng-container>
+    <div class="list-group-item p-4"
+         *ngIf="lista.length === 0">
+        <div class="alert alert-warning">
+            Nessun elemento presente
+        </div>
+    </div>
+</div>

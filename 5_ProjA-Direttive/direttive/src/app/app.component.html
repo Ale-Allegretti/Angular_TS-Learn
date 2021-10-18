@@ -1,0 +1,56 @@
+
+<div class="container my-5">
+
+  <div class="row">
+    <div class="col-3">
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" 
+        (click)="setAttivo(0)" [ngClass]="isAttivo(0)" [ngStyle]="isAttivoStyle(0)">
+        Ragazzi
+        </button>
+        <button type="button" class="list-group-item list-group-item-action"
+        [ngClass]="isAttivo(1)" (click)="setAttivo(1)" [ngStyle]="isAttivoStyle(1)">
+        Thriller</button>
+        <button type="button" class="list-group-item list-group-item-action"
+        [ngClass]="isAttivo(10)" (click)="setAttivo(10)" [ngStyle]="isAttivoStyle(10)">
+        Comico</button>
+        <button type="button" class="list-group-item list-group-item-action"
+        [ngClass]="isAttivo(3)" (click)="setAttivo(3)" [ngStyle]="isAttivoStyle(3)">
+        A fourth button item</button>
+      </div>
+    </div>
+    <div class="col">
+      <app-lista  *ngIf="attivo === 10">    <!-- comico -->
+      </app-lista>
+    </div>
+  </div>
+  <br>
+  {{ oggi }}
+  <br>
+  <!-- differenza con pipe che permette una formattazione della data -->
+  {{ oggi | date }} <br>
+  {{ oggi | date:'short'}} <br>
+  {{ oggi | date:'long'}} <br>
+  {{ oggi | date:'MMMM yyyy'}} <br>
+  {{ dataStringa | date:'long'}} <br>
+  <!-- {{ dataStringa | date:'long'}} <br> -->
+  {{ 0 | date}} <hr>
+  <br>
+  {{ numero | number:'1.0-0'}} <br>   <!-- parteIntera.parteMinDecimale-parteMaxDecimale -->
+  {{ numero | number:'1.1-1'}} <br> 
+  {{ numero | number:'2.1-3'}} <br> 
+  <br>
+  {{ prezzo | currency: 'EUR': 'code'}} <br>
+  {{ prezzo | currency: 'GBP'}} <br>
+  {{ prezzo | currency: 'USD'}} <br>
+  <br>
+  {{ nome | uppercase }} <br>
+  {{ cognome | lowercase }} <br>
+  {{ frase | titlecase }} <br>
+  <br>
+  {{ oggi | date:'full' | uppercase }} <br>
+  <br>
+  {{ frase | miaPipe: 10}} <br>
+  <br>
+  {{ numeri | slice: 2: 5}}
+</div>

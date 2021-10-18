@@ -12,18 +12,21 @@
   </div>
 
   <input type="text" class="form-control" [value]="getNomeCognome()">
-  <br>
+
+  <br>                                                     <!-- class.active fa visualizzare il bottone acceso o meno -->
   <button type="button" class="btn btn-primary" (click)="clickBottone()" [class.active]="isActive()">
     {{ !attivo ? "Attiva" : "Disattiva"}}
   </button>
+
   <br>
+  
   <div class="row mt-4">
    <img [src]="immagine" [hidden]="!mostrare">
   </div>
   <hr>
 
 
-  <!-- per stampare codice HTLM proveniente da terzi -->
+  <!-- per stampare codice HTML proveniente da terzi -->
   <div [innerHTML]="articolo"  
        [style.color]="'grey'" 
        [style.background] = "background"
@@ -40,6 +43,8 @@
   <br>
   <textarea name="" [(ngModel)]="testo" cols="50" rows="10"></textarea>
 
+
+  <!-- ngModel assegna a colore il value selezionato in tempo reale -->
   <select class="form-select" [(ngModel)]="colore">
       <option value="black">Nero</option>
       <option value="green">Verde</option>
@@ -47,7 +52,7 @@
   </select>
   <!-- questo permette di avere lo stesso risultato, su tutti gli elementi con lo stesso ngModel -->
 
-
+  <!-- richiama il valore di colore al momento delle seleziona di sopra -->
   <div [style.color]="colore">
     Questo testo cambia colore!
   </div>
@@ -58,6 +63,7 @@
 
   <label for="nome">Nome</label> 
   <br>
+  <!-- preleva nome e cognome da un oggetto utente -->
   <input type="text" class="form-control mb-2" id="nome" [(ngModel)]="utente.nome">
   <label for="cognome">Cognome</label> 
   <br>

@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 export class ChildComponent {
   counter = 0;
   interval: any;
+  bStop: boolean = false;
 
   @Output() evento: EventEmitter<number> = new EventEmitter();
   @Output() reset: EventEmitter<void> = new EventEmitter();
@@ -25,12 +26,16 @@ export class ChildComponent {
   }
 
   buttonClicked(): void {
+    this.bStop = true;
     clearInterval(this.interval);
     this.evento.emit(this.counter);
   }
 
   buttonReset(): void {
-    this.reset.emit();
-    this.resetGame();
+    if (this.bStop) {
+      this.reset.emit();
+      this.resetGame();
+    }
+    this.bStop = false;
   }
 }

@@ -40,7 +40,6 @@ export class AppComponent {
   }
 
   clickBottone (): void {
-    this.title = "Titolo cambiato da bottone";
     this.mostrare = !this.mostrare;
     this.attivo = !this.attivo;
   }

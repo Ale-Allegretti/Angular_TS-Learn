@@ -36,11 +36,13 @@
 </div>
 
 <div class="container">
-  <app-generato [numero]="1482" 
-      stringa="Stringa passata da binding" 
-      [libro]="libro"
-      (evento)="ricevoDati($event)"
-      [numero]="numeroRicevuto"></app-generato>
+  <!-- qui definisco i valori che passo da padre a figlio e per il quali il figlio restituirà
+      deterterminati risultati in base al suo component -->
+    <app-generato [numero]="1482" 
+        stringa="Stringa passata da binding" 
+        [libro]="libro"
+        (evento)="ricevoDati($event)"
+        [numero]="numeroRicevuto"></app-generato>
 
 </div>
 

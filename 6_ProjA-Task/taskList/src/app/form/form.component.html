@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header">
+        Aggiungi nuovo task
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+            <label for="inputTitolo"
+                   class="form-label">Titolo</label>
+            <input type="text"
+                   class="form-control"
+                   [(ngModel)]="newTodo.titolo"
+                   id="inputTitolo">
+            <div class="invalid-feedback">Inserisci un titolo</div>
+        </div>
+        <div class="mb-3">
+            <label for="inputDescrizione"
+                   class="form-label">Descrizione</label>
+            <textarea class="form-control"
+                      [(ngModel)]="newTodo.descrizione"
+                      id="inputDescrizione"
+                      rows="4"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="inputScadenza"
+                   class="form-label">Scadenza</label>
+            <input type="text"
+                   [(ngModel)]="newTodo.scadenza"
+                   class="form-control"
+                   id="inputScadenza">
+        </div>
+        <div class="form-check form-switch mb-3">
+            <input class="form-check-input"
+                   type="checkbox"
+                   [(ngModel)]="newTodo.urgente"
+                   role="switch"
+                   id="inputUrgente">
+            <label class="form-check-label"
+                   for="inputUrgente">Urgente</label>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button"
+                (click)="submitTask()"
+                class="btn btn-primary">Crea</button>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+
+<ul>    <!-- comico -->
+    <li *ngFor="let libro of libri; let indice = index; 
+    let primo = first; let ultimo = last;
+    let dispari = odd; let pari = even;" 
+    [ngStyle]="stileRigaPari(pari)" [ngClass]="classRigaDispari(dispari)">
+        {{ indice }}. {{ libro }} 
+        <span *ngIf="primo">--> Sono il primo elemento della lista</span>
+        <span *ngIf="ultimo">--> Sono l'ultimo elemento della lista</span>
+    </li>
+</ul>

@@ -1,0 +1,18 @@
+
+<div id="splash">
+    <div class="container">
+        <h1>Il miglior sito al <br>mondo per comprare libri</h1>
+    </div>
+</div>
+
+<section class="mt-5">
+    <h2 class="text-center">Top della settimana</h2>
+    <div class="container">
+        <div class="row gy-4 mt-3 mt-sm-4 justify-content-around">
+            <div class="col-6 col-sm-4 col-lg-3" 
+            *ngFor="let book of libri">
+                <app-book-card [libro]="book" ></app-book-card>
+            </div>
+        </div>
+    </div>
+</section>

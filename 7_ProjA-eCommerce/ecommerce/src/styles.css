@@ -1,0 +1,14 @@
+
+main.content {
+    min-height: 600px;
+}
+
+@media screen and (max-width: 600px){
+    #splash .container H1 {
+        text-align: center;
+        font-size: 2rem;
+        padding: 70px 0;
+    }
+
+    .nav-scroller .nav-item A {padding: 0.5rem;}
+}

@@ -27,12 +27,11 @@ export class SingleComponent implements OnInit {
   ngOnInit(): void {
     this.ar.params.subscribe(
       (p: Params) => {
-        this.book = this.catalogoService.getById(p.isbnLibro);
-        if(!this.book) {
-          this.router.navigate(["/errore"]);
-        }
-      }
-    );
+        this.catalogoService.getById(p.isbnLibro).subscribe(
+          (b: Book) => { this.book = b },
+          (e) => { this.router.navigate(["/notFound"])}
+        )
+    })
   }
 
   getDisponibilita() {

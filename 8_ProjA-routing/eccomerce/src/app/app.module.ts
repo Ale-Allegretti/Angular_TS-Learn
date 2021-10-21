@@ -21,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CatalogoService } from './services/catalogo.service';
 import { CartService } from './services/cart.service';
 import { SetToCartSelectComponent } from './set-to-cart-select/set-to-cart-select.component';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(localeIt);
 
@@ -44,7 +45,8 @@ registerLocaleData(localeIt);
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     CatalogoService,

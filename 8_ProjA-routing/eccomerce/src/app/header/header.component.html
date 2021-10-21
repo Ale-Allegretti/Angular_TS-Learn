@@ -4,10 +4,11 @@
             <span class="fs-4">Bookstore</span>
           </a>
           
-          <form class="col-12 col-md-6 mb-3 mb-sm-0">
+          <form class="col-12 col-md-6 mb-3 mb-sm-0" #searchForm="ngForm"> 
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Cerca...">
-                <button class="btn btn-outline-secondary" type="submit">Cerca</button>
+                <input [ngClass]="{'is-invalid': search.dirty && search.invalid }" #search="ngModel" required
+                [(ngModel)]="searchKeyword" name="searchKeyword" type="text" class="form-control" placeholder="Cerca...">
+                <button [disabled]="search.invalid" class="btn btn-outline-secondary" type="submit" routerLink="/search">Cerca</button>
             </div>
           </form>
   
@@ -33,8 +34,8 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorie</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#" *ngFor="let g of catalogoService.getGeneri()">{{ g }}</a></li>
+                <ul class="dropdown-menu" *ngIf="generi">
+                  <li><a class="dropdown-item" routerLink="/categoria/{{ g }}" *ngFor="let g of generi">{{ g }}</a></li>
                 </ul>
               </li>
               <li class="nav-item">

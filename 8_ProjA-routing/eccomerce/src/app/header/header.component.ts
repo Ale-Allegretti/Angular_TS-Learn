@@ -2,6 +2,7 @@ import { CartService } from './../services/cart.service';
 import { CatalogoService } from './../services/catalogo.service';
 
 import { Component, OnInit } from '@angular/core';
+import { Book } from '../books/book.model';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public catalogoService: CatalogoService, public cartService: CartService) { }
+  generi?: string[];
+  searchKeyword: string = "";
+
+  constructor(
+    public catalogoService: CatalogoService, 
+    public cartService: CartService
+  ) { }
+
+
 
   ngOnInit(): void {
+    this.catalogoService.downloadCatalogo().subscribe(
+      (cat: Book[]) => {
+        let output = new Set<string>();
+        for(let book of cat) {
+          for(let genere of book.genre) {
+            output.add(genere);
+          }
+        }
+        this.generi = Array.from(output).sort();
+      }
+    )
   }
 
 }

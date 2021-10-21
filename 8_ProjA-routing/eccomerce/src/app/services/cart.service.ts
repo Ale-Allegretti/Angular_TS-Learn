@@ -10,8 +10,13 @@ export class CartService {
   private LS_KEY = "Ecommerce_cart"
 
   constructor() {
-    this.cart = [];
-   }
+    if(sessionStorage.getItem(this.LS_KEY)){
+      this.cart = JSON.parse(sessionStorage.getItem(this.LS_KEY)!) as ItemInCart[];
+    }
+    else {
+      this.cart = [];
+    }
+  }
   
   add(b: Book, qty: number) {
     // verifico se il Book b è già presente nel cart

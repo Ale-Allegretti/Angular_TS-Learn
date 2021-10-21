@@ -2,8 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// utilizzata per il NG SERVE, utile per lo sviluppo di solito in locale
+
 export const environment = {
-  production: false
+  production: false,
+  endPoint:"http://sviluppo.zetra.it/ws_example"
 };
 
 /*

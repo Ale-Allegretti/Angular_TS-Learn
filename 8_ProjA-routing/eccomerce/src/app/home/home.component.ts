@@ -1,5 +1,8 @@
 
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { Book } from '../books/book.model';
 import { CatalogoService } from '../services/catalogo.service';
 
 @Component({
@@ -9,10 +12,21 @@ import { CatalogoService } from '../services/catalogo.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public catalogoService: CatalogoService) { }
+  libroInOfferta?: Book; 
+  libriInPromo?: Book[];
+
+  constructor(
+    public catalogoService: CatalogoService,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
-    
-   }
+    this.http.get<Book[]>(`${environment.endPoint}/getBooks.php`).subscribe(
+      (catalogoLibri: Book[]) => { 
+        this.libroInOfferta = catalogoLibri.find(b => b.offerta_speciale);
+        this.libriInPromo = catalogoLibri.filter(b => b.promo);
+       }
+    );
+  }
 
 }

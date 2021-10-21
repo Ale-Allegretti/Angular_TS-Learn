@@ -46,7 +46,7 @@
         {{ this.catalogoService.getBooksByCategory(book.genre, book) | json}}
         </pre> -->
 
-        <div class="container my-5">
+        <!-- <div class="container my-5">
             <h3>Altri libri della stessa categoria</h3>
             <div *ngIf="catalogoService.getBooksByCategory(book.genre, book).length == 0">
                 <div class="alert alert-warning">Nessun libro della stessa categoria</div>
@@ -56,6 +56,6 @@
                     <app-book-card [libro]="b"></app-book-card>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

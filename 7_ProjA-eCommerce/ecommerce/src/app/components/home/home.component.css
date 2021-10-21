@@ -25,5 +25,10 @@
     text-shadow: 3px 3px 16px rgb(0, 0, 0);
     font-size: 2.8rem;
 }
-A.nav-link {color: steelblue;}
-A.nav-link:hover{color: turquoise;}
+
+.price {    
+    color: rgb(255, 60, 0);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}

@@ -1,3 +1,5 @@
+import { CartService } from './../../services/cart.service';
+import { CatalogoService } from './../../services/catalogo.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public catalogoService: CatalogoService, public cartService: CartService) { }
 
   ngOnInit(): void {
+    console.log(this.catalogoService.getGeneri());
   }
 
 }

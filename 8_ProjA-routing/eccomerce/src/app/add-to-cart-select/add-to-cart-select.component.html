@@ -1,0 +1,8 @@
+
+<div class="input-group input-group-sm my-3" *ngIf="this.cartService.numberOfBooksInCart(libro) < libro.stock">
+    <select class="form-select" [(ngModel)]="qta">
+          <option value="">Scegli...</option>
+          <option *ngFor="let x of catalogoService.numberToArray(libro.stock - this.cartService.numberOfBooksInCart(libro))" [value]="x">{{x}}</option>
+    </select>
+    <button [disabled]="qta.length === 0" class="btn" [ngClass]="cssClass" type="button" (click)="addToCart()">Compra</button>
+</div>

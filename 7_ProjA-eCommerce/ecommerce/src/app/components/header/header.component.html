@@ -1,44 +1,47 @@
-<div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+    <header style="z-index: 99999; background-color: #fff;" class="d-flex fixed-top flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-2 border-bottom">
+        <div class="container d-flex">
+          <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
             <span class="fs-4">Bookstore</span>
-        </a>
-        <form class="col-12 col-md-6 mb-3 mb-sm-0">
+          </a>
+          
+          <form class="col-12 col-md-6 mb-3 mb-sm-0">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Cerca...">
                 <button class="btn btn-outline-secondary" type="submit">Cerca</button>
             </div>
-        </form>
-        
-        <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-primary me-2 position-relative"><i class="bi bi-cart"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    3
+          </form>
+  
+          <div class="col-md-3 text-end">
+            <button type="button" class="btn btn-outline-primary me-2 position-relative">
+                <i class="bi bi-cart"></i>
+                <span *ngIf="cartService.getCount() > 0">
+                    {{ cartService.getTotal() | currency: 'EUR' }}
+                </span>
+                <span *ngIf="cartService.getCount() > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ cartService.getCount() }}
                 </span>
             </button>
             <button type="button" class="btn btn-primary">Accedi</button>
+          </div>
         </div>
     </header>
-    <div class="container"></div>
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link"  aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                 <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#">Categorie</a>
-                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Bambini</a></li>
-                    <li><a class="dropdown-item" href="#">Romanzi</a></li>
-                    <li><a class="dropdown-item" href="#">Horror</a></li>
+
+    <div class="nav-scroller">
+          <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorie</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#" *ngFor="let g of catalogoService.getGeneri()">{{ g }}</a></li>
                 </ul>
-            </li>
-            <li class="nav-item">
-                 <a class="nav-link" href="#"><i class="bi bi-star"></i>Offerte</a>
-            </li>
-            <li class="nav-item">
-                 <a class="nav-link" href="#">Chi siamo</a>
-            </li>
-        </ul>
-</div>
-
-
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-star"></i> Offerte</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Chi siamo</a>
+              </li>
+            </ul>
+    </div>

@@ -1,0 +1,61 @@
+    
+<div *ngIf="book">
+    <div class="container-fluid mt-2" style="background-color: #f8f8f8;">
+        <div class="container py-4">
+            <h1>{{ book.title }}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item" routerLink="/"><a>Homepage</a></li>
+                <li class="breadcrumb-item">{{ book.genre }}</li>
+                <li class="breadcrumb-item"><a>{{ book.title }}</a></li>
+                </ol>
+            </nav>
+            
+        </div>
+    </div>
+
+    <!-- Risultati -->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-4">
+                <img [src]="book.img" class="card-img-top" alt="">
+            </div>
+            <div class="col">
+                <!-- definition list -->
+                <dl>
+                    <dt>Titolo</dt>
+                    <dd>{{ book.title }}</dd>
+                    <dt>Autore</dt>
+                    <dd>{{ book.author }}</dd>
+                    <dt>Casa Editrice</dt>
+                    <dd>{{ book.publisher}}</dd>
+                    <dt>Pagine</dt>
+                    <dd>{{ book.pages }}</dd>
+                    <dt>Genere</dt>
+                    <dd>{{ book.genre }}</dd>
+                    <dt>Disponibilità</dt>
+                    <dd><span [ngClass]="getDisponibilita()">{{ this.q }} disponibili</span></dd>
+                </dl>
+                <div class="price fs-2">{{ this.catalogoService.getPrezzo(book)| currency: 'EUR' }}</div>
+                
+                <app-add-to-cart-select [libro]="book" [cssClass]="'btn-primary'"></app-add-to-cart-select>
+        
+            </div>
+        </div>
+        <!-- <pre>
+        {{ this.catalogoService.getBooksByCategory(book.genre, book) | json}}
+        </pre> -->
+
+        <div class="container my-5">
+            <h3>Altri libri della stessa categoria</h3>
+            <div *ngIf="catalogoService.getBooksByCategory(book.genre, book).length == 0">
+                <div class="alert alert-warning">Nessun libro della stessa categoria</div>
+            </div>
+            <div class="row gy-4 mt-2" *ngIf="catalogoService.getBooksByCategory(book.genre, book).length > 0">
+                <div class="col-6 col-sm-4 col-lg-3" *ngFor="let b of catalogoService.getBooksByCategory(book.genre, book)">
+                    <app-book-card [libro]="b"></app-book-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

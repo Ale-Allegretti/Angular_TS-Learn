@@ -1,0 +1,10 @@
+
+A.nav-link {color: steelblue;}
+
+A.nav-link:hover {color: turquoise;}
+
+A.nav-link.active {
+    background-color: brown;
+    color: white;
+    border-radius: 8px;
+}

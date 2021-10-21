@@ -1,6 +1,6 @@
+import { CatalogoService } from './../../services/catalogo.service';
 
 import { Component, OnInit } from '@angular/core';
-import { Book, books } from 'src/app/books/book.model';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +9,10 @@ import { Book, books } from 'src/app/books/book.model';
 })
 export class HomeComponent implements OnInit {
 
-  libri: Book[] = books.filter(el => el.promo);
-
-  constructor() { }
+  constructor(public catologoService: CatalogoService) { }
 
   ngOnInit(): void {
-  }
+    
+   }
 
 }

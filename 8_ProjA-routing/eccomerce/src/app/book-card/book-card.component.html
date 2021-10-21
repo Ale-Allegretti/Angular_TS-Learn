@@ -1,0 +1,24 @@
+
+<div class="card book" (book)="libro">
+    <span class="badge bg-success promo" *ngIf="libro?.promo">PROMO</span>
+    <img [src]="libro.img"
+      class="card-img-top" alt="">
+    <div class="card-body">
+        <h5 class="card-title">{{ libro.title }}</h5>
+        <h6>{{ libro.author }}</h6>
+        <span class="badge rounded-pill bg-secondary"*ngFor="let generi of libro.genre">{{ generi }}</span>
+        <p class="card-text mt-2">
+          {{ libro.publisher }}
+        </p>
+        <div class="row">
+          <div class="col-5">
+            <div class="price">{{ libro.price | currency: 'EUR' }} </div> 
+          </div>
+          <div class="col" *ngIf="libro.promo">
+            <div class="pricePromo">{{ this.catalogoService.getPrezzo(libro) | currency: 'EUR' }}</div>
+          </div>
+        </div>  
+        <app-add-to-cart-select [libro]="libro"[cssClass]="'btn-secondary'"></app-add-to-cart-select>
+        <a routerLink="/single/{{ libro.isbn }}" class="btn btn-sm btn-outline-primary">Visualizza &raquo;</a>
+    </div>
+</div>

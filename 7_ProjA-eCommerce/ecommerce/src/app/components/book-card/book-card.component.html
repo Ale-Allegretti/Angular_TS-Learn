@@ -1,16 +1,30 @@
 
 <div class="card book" (book)="libro">
     <span class="badge bg-success promo" *ngIf="libro?.promo">PROMO</span>
-    <img [src]="libro?.img"
+    <img [src]="libro.img"
       class="card-img-top" alt="">
     <div class="card-body">
-      <h5 class="card-title">{{ libro?.title }}</h5>
-      <h6>{{ libro?.author }}</h6>
-      <span class="badge rounded-pill bg-secondary"*ngFor="let generi of libro?.genre">{{ generi }}</span>
-      <p class="card-text mt-2">
-        {{ libro?.publisher }}
-      </p>
-      <div class="price">{{ libro?.price | currency: 'EUR' }}</div>
-      <a href="#" class="btn btn-sm btn-outline-primary">Visualizza &raquo;</a>
+        <h5 class="card-title">{{ libro.title }}</h5>
+        <h6>{{ libro.author }}</h6>
+        <span class="badge rounded-pill bg-secondary"*ngFor="let generi of libro.genre">{{ generi }}</span>
+        <p class="card-text mt-2">
+          {{ libro.publisher }}
+        </p>
+        <div class="row">
+          <div class="col-5">
+            <div class="price">{{ libro.price | currency: 'EUR' }} </div> 
+          </div>
+          <div class="col">
+            <div class="pricePromo">{{ this.catalogoService.getPrezzo(libro) | currency: 'EUR' }}</div>
+          </div>
+        </div>  
+        <div class="input-group input-group-sm my-3" *ngIf="qtaNelCart < libro.stock">
+          <select class="form-select" [(ngModel)]="qta">
+                <option value="">Scegli...</option>
+                <option *ngFor="let x of catalogoService.numberToArray(libro.stock - qtaNelCart)" [value]="x">{{x}}</option>
+          </select>
+          <button [disabled]="qta.length === 0" class="btn btn-secondary" type="button" (click)="addToCart()">Compra</button>
+        </div>
+        <a href="#" class="btn btn-sm btn-outline-primary">Visualizza &raquo;</a>
     </div>
 </div>

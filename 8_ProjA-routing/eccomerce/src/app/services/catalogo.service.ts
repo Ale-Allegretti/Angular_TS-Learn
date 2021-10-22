@@ -113,4 +113,15 @@ export class CatalogoService {
     return this.http.get<Book[]>(`${environment.endPoint}/getBooks.php`);
   }
 
+  searchByKeyword(k : string) : Observable<Book[]> {
+    return this.http.get<Book[]>(
+      `${environment.endPoint}/searchBooks.php`,
+      {
+        params : {
+          keyword : k
+        }
+      }
+    )
+  }
+
 }

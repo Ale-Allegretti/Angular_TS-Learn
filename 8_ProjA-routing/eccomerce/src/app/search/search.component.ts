@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
   filtroPrezzoDa: string = "";
   filtroPrezzoA: string = "";
   temp?: Book[];
+  unfilteredResults?: Book[];
 
 
   constructor(
@@ -27,6 +28,7 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // URL: /categoria/Kids (router parameter, app.routing.model)
     this.ar.params.subscribe(
       (p: Params) => {
         // nomeCategoria è impostato nel app
@@ -50,7 +52,20 @@ export class SearchComponent implements OnInit {
           }
       })
     })
-  })
+    })
+
+    // URL: /search?chiave=XXX (querystring parameter, passato dal form di ricerca)
+    this.ar.queryParams.subscribe(
+      (p : Params) => {
+        if(!p.chiave) { return; }
+        this.catalogoService.searchByKeyword(p.chiave).subscribe(
+          (b : Book[]) => {
+            this.results = b
+            this.unfilteredResults = b
+          }
+        )
+      }
+    )
   }
 
   ordina(): void {

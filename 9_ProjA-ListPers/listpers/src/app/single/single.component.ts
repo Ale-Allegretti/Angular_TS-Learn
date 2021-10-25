@@ -42,4 +42,13 @@ export class SingleComponent implements OnInit {
     return this.http.get<WSInterfaceSingle>(`${environment.endPoint}/users/${id}`);
   }
 
+  goNext(id: number): number {
+    // andrebbe implementato un modo per ricavare l'ultimo ID 
+    return id < 12 ? id + 1 : id;
+  }
+
+  goBack(id: number): number {
+    return id > 1 ? id - 1 : id;
+  }
+
 }

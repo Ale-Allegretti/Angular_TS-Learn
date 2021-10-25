@@ -6,8 +6,8 @@
     <div class="row"> <label for="form-select">Elementi per pagina</label> </div>
     <div class="row">
         <div class="col-3">
-            <select class="form-select mt-3" [(ngModel)]="pgSelect" 
-                (change)="getPeopleByPage('1', pgSelect)">
+            <select class="form-select mt-3" [(ngModel)]="tempSelect" 
+                (change)="getPeopleByPage('1', tempSelect)">
                 <option value="1">Uno</option>
                 <option value="2">Due</option>
                 <option value="3">Tre</option>
@@ -19,7 +19,7 @@
         </div>
         <div class="col-2 mt-3" [hidden]="visPers()">
             <input type="text" class="form-control" [ngClass]="{'is-invalid': setPage.dirty && setPage.invalid }" #setPage="ngModel"
-            [pattern]="pgPersValid" [(ngModel)]="pgPers" (keyup)="getPeopleByPage('1', pgPers)">
+            [pattern]="pgPersValid" [(ngModel)]="tempPers" (keyup)="getPeopleByPage('1', tempPers)">
         </div>
     <div>
     <div class="row">
@@ -30,6 +30,17 @@
                     *ngFor="let i of numPagineTot"><a class="page-link" (click)="setPagina(i.toFixed())">{{ i }}</a></li>
                 </ul>
             </nav>
+        </div>
+        <div class="col-6 pt-5"  *ngIf="utenteIscritto">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Utente correttamente registrato!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+         </div>
+        <div class="col mt-5">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button routerLink="/newUser" class="btn btn-outline-success me-md-2" type="button">Crea nuovo utente</button>
+            </div>
         </div>
     </div>
     
@@ -42,24 +53,23 @@
                   <a class="page-link" (click)="setPagina('2')" (click)="getPeopleByPage('2')">2</a>
                 </li>
             </ul> -->
-    <div class="row g-0 gy-3 my-5">
-        <div class="col-4 gx-3" *ngFor="let persona of persone">
-            <div class="card">
-                <img [src]="persona.avatar" class="card-img-top img-fluid">
-                <div class="card-body">
-                  <h5 class="card-title">{{ persona.first_name }} {{ persona.last_name }}</h5>
-                  <span class="badge rounded-pill bg-secondary">ID: {{ persona.id }}</span>
-                  <p class="card-text">email: {{ persona.email }}</p>
+    <div class="container" style="max-width: 80%;">
+        <div class="row g-0 gy-3 my-5">
+            <div class="col-4 gx-3" *ngFor="let persona of persone">
+                <div class="card">
+                    <img [src]="persona.avatar" class="card-img-top img-fluid">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ persona.first_name }} {{ persona.last_name }}</h5>
+                    <span class="badge rounded-pill bg-secondary">ID: {{ persona.id }}</span>
+                    <p class="card-text">email: {{ persona.email }}</p>
+                    </div>
+                    <div class="card-footer">
+                    <small class="text-muted">
+                        <a routerLink="/single/{{ persona.id }}" class="btn btn-outline-dark btn-md">Visualizza &raquo;</a>
+                    </small>
+                    </div>
                 </div>
-                <div class="card-footer">
-                  <small class="text-muted">
-                    <a routerLink="/single/{{ persona.id }}" class="btn btn-outline-dark btn-md">Visualizza &raquo;</a>
-                  </small>
-                </div>
-              </div>
+            </div>
         </div>
     </div>
-    <nav>
-        
-    </nav>
 </div>

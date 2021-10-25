@@ -11,9 +11,39 @@
             {{ support.text }}
         </p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+          <button *ngIf="persona.id < 12" routerLink="/single/{{ (goNext(persona.id)) }}" class="btn btn-secondary btn-lg px-4 me-md-2 fw-bold">See next</button>
+          <button *ngIf="persona.id > 1" routerLink="/single/{{ (goBack(persona.id)) }}" type="button" class="btn btn-outline-secondary btn-lg px-4">&leftarrow; previous</button>
+          <br>
+        </div>
+        <button routerLink="" type="button" class="btn btn-outline-primary btn-lg px-4">Home</button>
+      </div>
+    </div>
+</div>
+
+
+<!-- Andrebbe fatto un MASTER SINGLE dove passare la persona singola (cliccata) 
+     e un array di persone da mostrare in questa preview
+<div class="container my-5">
+  <h3>Altri profili di persone</h3>
+  <div class="row gy-4 mt-2">
+    <div class="col-6 col-sm-4 col-lg-3" *ngFor="let pers ">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
     </div>
+  </div>
+</div> -->
+
+
+<div class="container my-5" *ngIf="!persona">
+  <h2>Ooops! Qualcosa è andato storto...</h2>
+  <div class="alert alert-warning mt-4">
+    Nessun persona con questo ID presente
+  </div>
+  <button routerLink="" type="button" class="btn btn-outline-primary btn-lg px-4 mt-5">Home</button>
 </div>

@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NuovoUtenteComponent } from './nuovo-utente/nuovo-utente.component';
 import { SingleComponent } from './single/single.component';
 import { MasterComponent } from './master/master.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     NuovoUtenteComponent,
     SingleComponent,
-    MasterComponent
+    MasterComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

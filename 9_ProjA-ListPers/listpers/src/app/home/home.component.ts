@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { environment } from './../../environments/environment';
 import { WSInterface } from './../persona/wsInterface.model';
 import { Persona } from './../persona/persona.model';
@@ -17,20 +18,30 @@ export class HomeComponent implements OnInit {
   pagina: string = '1';
   pgPersValid = new RegExp(/^[1-12]{1,2}$/)
   pgPers: string = '';
-  pgSelect: string = '6';
+  pgSelect: string = '';
+  tempSelect: string = '6';
+  tempPers: string = '';
   total_pages: number = 2;
   numPagineTot: number[] = [];
+  utenteIscritto?: object;
 
   constructor(
     public listpersonService: ListpersonService,
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.utenteIscritto = this.router.getCurrentNavigation()?.extras.state;
+   }
 
   ngOnInit(): void {
     this.getPeopleByPage('1', '6');
   }
 
   getPeopleByPage(page: string, perPages: string): void {
+    if(perPages == 'Pers') {
+      return;
+    }
+    this.pgSelect = perPages;
     this.pagina = page;
     this.http.get<WSInterface>(`${environment.endPoint}/users?page=${page}&per_page=${perPages}`)
     .subscribe((wsResponse: WSInterface) => {
@@ -38,9 +49,9 @@ export class HomeComponent implements OnInit {
       this.persone = this.wsR.data;
       this.total_pages = this.wsR.total_pages;
       this.numberToArray();
-      console.log(this.total_pages);
     })
   }
+
 
   setPagina(page: string): void {
     this.pagina = page;
@@ -48,7 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   visPers(): boolean {
-    return this.pgSelect == 'Pers' ? false : true;
+    return this.tempSelect == 'Pers' ? false : true;
   }
 
   numberToArray(): void {
@@ -58,16 +69,14 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // setNumPage(num: string): void {
-  //   this.pages = [];
-  //   let resto = 12 % Number(num) != 0 ? 1 : 0;
-  //   let numPages = (12 / Number(num)) + resto;
-    
-  //   for(let i = 1; i <= (parseInt(numPages.toPrecision(1))); i++) {
-  //     this.pages[i-1] = i;
-  //   }
-  // }
 
-  
+  showAlert(): boolean {
+    if(this.utenteIscritto) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
 
 }

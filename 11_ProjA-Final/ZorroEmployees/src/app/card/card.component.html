@@ -1,0 +1,19 @@
+
+<nz-card [nzCover]="coverTemplate" [nzActions]="[detail, edit, delete]">
+    <nz-card-meta
+      [nzTitle]="getNomeCognome()"
+      [nzDescription]="emp.email"
+    ></nz-card-meta>
+  </nz-card>
+  <ng-template #coverTemplate>
+    <img [src]="emp.avatar" />
+  </ng-template>
+  <ng-template #detail>
+  <i nz-icon nz-tooltip nzTooltipTitle="Visualizza" nzType="right-circle" [nzTheme]="'twotone'"></i>
+  </ng-template>
+  <ng-template #edit>
+  <i nz-tooltip nzTooltipTitle="Modifica" nz-icon nzType="edit" [nzTheme]="'twotone'"></i>  
+  </ng-template>
+  <ng-template #delete>
+  <i nz-tooltip nzTooltipTitle="Elimina" nz-icon nzType="delete" [nzTheme]="'twotone'"></i>
+  </ng-template>

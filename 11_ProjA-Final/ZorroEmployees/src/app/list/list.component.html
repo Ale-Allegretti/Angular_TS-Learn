@@ -1,0 +1,19 @@
+
+<nz-spin *ngIf="loading" nzSimple [nzSize]="'large'"></nz-spin>
+<div *ngIf="!loading">
+
+    <button routerLink="/create" nz-button nzType="primary">Crea</button> &nbsp;
+    <nz-select [formControl]="limit">
+        <nz-option *ngFor="let l of limitOptions" [nzValue]="l" [nzLabel]="l"></nz-option>
+    </nz-select>
+    
+    <nz-divider nzText="My Employees"></nz-divider>
+
+    <div nz-row [nzGutter]="16">
+        <div nz-col nzSm="12" [nzMd]="getColsMd()" *ngFor="let e of list">
+            <app-card [emp]="e"></app-card>
+        </div>
+    </div>
+    <br>
+    <nz-pagination (nzPageIndexChange)="changePage($event)" [nzPageIndex]="currentPage" [nzPageSize]="limit.value" [nzTotal]="totalItem"></nz-pagination>
+</div>

@@ -1,0 +1,70 @@
+
+<h1>Aggiungi nuovo employee</h1>
+<br>
+<form nz-form [formGroup]="frm" (ngSubmit)="save()">
+    <nz-form-item>
+        <nz-form-label nzSm="6" nzRequired>Nome</nz-form-label>
+        <nz-form-control nzSm="12">
+            <input nz-input formControlName="nome" nzErrorTip="Valore non valido">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSm="6" nzRequired>Cognome</nz-form-label>
+        <nz-form-control nzSm="12">
+            <input nz-input formControlName="cognome" nzErrorTip="Valore non valido">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzSm="6" nzRequired>Mansione</nz-form-label>
+        <nz-form-control nzSm="12">
+            <nz-radio-group formControlName="job" nzButtonStyle="solid">
+                <label nz-radio-button nzValue="Admin">Amministratore</label>
+                <label nz-radio-button nzValue="Business">Business manager</label>
+                <label nz-radio-button nzValue="Simple">Impiegato</label>
+              </nz-radio-group>
+        </nz-form-control>   
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-control nzSm="12" nzOffset="6">
+            <nz-card *ngFor="let rec of recapitiControl; let i = index" [formGroup]="rec">
+                <nz-form-item>
+                    <nz-form-label nzSm="6" nzRequired>Tipo</nz-form-label>
+                    <nz-form-control nzSm="22">
+                        <nz-select formControlName="tipo"> 
+                            <nz-option nzValue="Mobile" nzLabel="Mobile"></nz-option>
+                            <nz-option nzValue="Fax" nzLabel="Fax"></nz-option>
+                            <nz-option nzValue="Email" nzLabel="Email"></nz-option>
+                            <nz-option nzValue="Telefono" nzLabel="Telefono"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin-bottom: 0;">
+                    <nz-form-label nzSm="6" nzRequired>Recapito</nz-form-label>
+                    <nz-form-control nzSm="22">
+                        <input nz-input nzErrorTip="Valore non valido" formControlName="numero">
+                    </nz-form-control>
+                </nz-form-item>
+                <br>
+                <button (click)="removeRecapito(i)" nz-button nzType="default" nzDanger [nzSize]="'small'">
+                    Rimuovi
+                </button>    
+            </nz-card>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="recapitiControl.length < 3">
+        <nz-form-control nzSm="12" nzOffset="6">
+            <button type="button" (click)="addRecapito()" nz-button nzType="default" class="btnAddRecapito">
+                <i nz-icon nzType="phone"></i> Aggiungi recapito
+            </button>
+        </nz-form-control> 
+    </nz-form-item>
+
+    <br>
+    <nz-form-item>
+        <nz-form-control nzSm="12" nzOffset="6">
+             <button type="submit" nz-button nzType="primary">Salva</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

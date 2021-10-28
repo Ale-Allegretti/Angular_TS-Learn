@@ -1,0 +1,19 @@
+
+<div class="invalid-feedback d-block" *ngIf="control.touched && control.errors">
+    <span *ngIf="control.errors.required">
+        Campo obbligatorio
+    </span>
+    <span *ngIf="control.errors.pattern">
+        Il formato inserito non è corretto
+    </span>
+    <span *ngIf="control.errors.minlength">
+        Richiesti {{ control.errors.minlength.requiredLength}} caratteri,
+        ne hai inseriti {{ control.errors.minlength.actualLength }}
+    </span>
+    <span *ngIf="control.errors.minimo">
+        La data deve essere superiore al 01/01/1900
+    </span>
+    <span *ngIf="control.errors.massimo">
+        Sei nato nel futuro?
+    </span>
+</div>

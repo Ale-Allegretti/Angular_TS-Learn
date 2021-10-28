@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   wsR?: WSInterface;
   persone?: Persona[];
   pagina: string = '1';
-  pgPersValid = new RegExp(/^[1-12]{1,2}$/)
+  pgPersValid = new RegExp(/^[1-12]{1,2}$/);
   pgPers: string = '';
   pgSelect: string = '';
   tempSelect: string = '6';

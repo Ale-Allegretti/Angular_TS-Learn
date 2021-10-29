@@ -30,3 +30,16 @@ ed eseguire da terminale {
 ## CORS nelle chiamate Http nei confronti di un BE
 
 Se c'è un errore di tipo CORS nella response da parte di un server, c'è da contattare il BE per avere le necessarie autorizzazioni per chiamate GET o POST
+
+## Interceptors
+
+Questo gestisce tutte le chiamate che verranno fatte in seguito ad un autenticazione e acquisizione token.
+Generato l'interceptor va aggiunto in providers in app.module con { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: false } il quale viene chiamato dalla classe HttpClient ogni qualvolta viene fatta una chiamata http (multi sta ad indica la possibilità di aver più interceptor).
+
+Il token restituito permette di recuperare i dati dell'utente tramite la sua decodifica fatta da apposita libreria (jwt-decode). Tra quello che restituisce ci sono anche i campi *exp* e *iat* che indicano scandeza e creazione del token.
+
+## Gards
+
+Un guard può essere utilizzato per autorizzare determinate pagine secondo certi criteri, tra cui principalmente l'utilizzo del token salvato nel LS. Si implementa il tutto aggiungendo il *canActivate* in app.routing.module.
+
+Per evitare che si bypassi questo strumento, si usa il CheckToken come strumento di ulteriore sicurezza.

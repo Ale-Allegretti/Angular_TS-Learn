@@ -13,6 +13,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthService } from './services/auth.service';
+import { FormErrorsComponent } from './form-errors/form-errors.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthService } from './services/auth.service';
     HeaderComponent,
     FooterComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    FormErrorsComponent
   ],
   imports: [
     BrowserModule,

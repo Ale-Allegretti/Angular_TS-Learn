@@ -40,4 +40,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  get email(): FormControl { return this.login.get("email") as FormControl };
+
 }
